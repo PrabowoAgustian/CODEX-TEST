@@ -1,6 +1,9 @@
 package com.codex.test.feature.story
 
 import android.os.Bundle
+import android.text.Html
+import android.widget.Toast
+import butterknife.OnClick
 import com.codex.test.R
 import com.codex.test.base.view.activity.BaseDaggerActivity
 import com.codex.test.constant.LiveDataTag
@@ -11,7 +14,7 @@ import com.codex.test.pojo.common.Response
 import com.codex.test.pojo.response.BaseResponse
 import kotlinx.android.synthetic.main.activity_detail_story.*
 
-@Suppress("CAST_NEVER_SUCCEEDS")
+@Suppress("CAST_NEVER_SUCCEEDS", "DEPRECATION")
 class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
 
     override fun layoutRes(): Int {
@@ -38,8 +41,17 @@ class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     private fun initComponent(baseResponse: BaseResponse) {
         titleDescTextView.text = baseResponse.title
         descTitleTextView.text = "Deskripsi"
-        byUserNameTextView.text = StringHelper.getStringBuilderToString("By ", baseResponse.by)
+        byUserNameTextView.text = StringHelper.getStringBuilderToString("By : ", baseResponse.by)
         dateTextView.text = TimeHelper.getDateFormated(baseResponse.time)
-        descTextView.text = baseResponse.text
+        descTextView.text = Html.fromHtml(Html.fromHtml(baseResponse.text).toString())
+    }
+
+    @OnClick(R.id.favButton)
+    fun favClicked(){
+        favButton.isSelected = !favButton.isSelected
+        if (favButton.isSelected) {
+            showActivityAndFinishAllActivity(this, TopStoryActivity::class.java)
+            Toast.makeText(this@DetailStoryActivity, "Added to favorites", Toast.LENGTH_LONG).show()
+        }
     }
 }

@@ -25,4 +25,16 @@ open class PreferenceManager (
     /*
     write all setter below
      */
+
+    fun setLocalTitle(title: String?) {
+        securePreferences.edit().putString(BuildConfig.titleFavKey, title).apply()
+    }
+
+    /*
+   write all getter below
+    */
+
+    fun getLocalTitle(): String {
+        return securePreferences.getString(BuildConfig.titleFavKey, "") ?: ""
+    }
 }

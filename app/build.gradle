@@ -25,6 +25,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', 'apiURl', apiURl
         buildConfigField 'String', 'keyPreference', keyPreference
+        buildConfigField 'String', 'titleFavKey', titleFavKey
     }
 
     buildTypes {

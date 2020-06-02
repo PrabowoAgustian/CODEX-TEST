@@ -4,6 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.codex.test.R
+import com.codex.test.helper.StringHelper
 import com.codex.test.helper.TimeHelper
 import com.codex.test.pojo.response.BaseResponse
 import com.mikepenz.fastadapter.items.AbstractItem
@@ -25,7 +26,7 @@ class ListStoryAdapter (var response: BaseResponse) : AbstractItem<ListStoryAdap
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleStory: AppCompatTextView = itemView.findViewById(R.id.titleStoryTextView)
         val timeStory : AppCompatTextView = itemView.findViewById(R.id.timeStoryTextView)
-        val urlStory : AppCompatTextView = itemView.findViewById(R.id.urlStoryTextView)
+        val scoreStory : AppCompatTextView = itemView.findViewById(R.id.scoreStoryTextView)
     }
 
     override fun bindView(
@@ -35,7 +36,8 @@ class ListStoryAdapter (var response: BaseResponse) : AbstractItem<ListStoryAdap
         super.bindView(holder, payloads)
         holder.titleStory.text = response.title
         holder.timeStory.text = TimeHelper.getDateFormated(response.time)
-        holder.urlStory.text = response.url
+        holder.scoreStory.text = StringHelper.getStringBuilderToString("Total Comment : ",response.descendants.toString(),
+            "  ","Score : ", response.score.toString())
     }
 
     override fun unbindView(holder: ViewHolder) {
