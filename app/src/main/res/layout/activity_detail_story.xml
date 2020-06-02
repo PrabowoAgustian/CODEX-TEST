@@ -17,38 +17,33 @@
                 android:id="@+id/titleDescTextView"
                 style="@style/largeHkBoldTextView"
                 android:textSize="@dimen/text_big"
-                android:layout_centerHorizontal="true"
-                android:text="Judul"/>
+                android:layout_centerHorizontal="true"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/byUserNameTextView"
                 style="@style/mediumHkBoldTextView"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_below="@+id/titleDescTextView"
-                android:layout_centerHorizontal="true"
-                android:text="Judul"/>
+                android:layout_centerHorizontal="true"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dateTextView"
                 style="@style/mediumHkBoldTextView"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_below="@+id/byUserNameTextView"
-                android:layout_centerHorizontal="true"
-                android:text="Judul"/>
+                android:layout_centerHorizontal="true"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descTitleTextView"
                 style="@style/largeHkBoldTextView"
                 android:layout_marginTop="@dimen/margin_big"
-                android:layout_below="@+id/dateTextView"
-                android:text="Deskripsi"/>
+                android:layout_below="@+id/dateTextView"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/descTextView"
                 style="@style/mediumHkBoldTextView"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_below="@+id/descTitleTextView"
-                android:text="Judul"/>
+                android:layout_below="@+id/descTitleTextView"/>
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -11,27 +11,13 @@ import java.util.*
 class TimeHelper {
     companion object {
 
-        fun getDateFormatedNew(time: String): String? {
-            var reformattedDate: String? = null
-            @SuppressLint("SimpleDateFormat") val inputFormat =
-                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ", Locale.getDefault())
-            @SuppressLint("SimpleDateFormat") val outputFormat =
-                SimpleDateFormat("EEE, dd MMM YYYY HH:mm")
-            @SuppressLint("SimpleDateFormat") val otherInput =
-                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-            otherInput.timeZone = TimeZone.getTimeZone("UTC")
-            try {
-                reformattedDate = outputFormat.format(inputFormat.parse(time))
-            } catch (e: ParseException) {
-                try {
-                    reformattedDate = outputFormat.format(otherInput.parse(time.replace("Z", "")))
-                } catch (e1: ParseException) {
-                    e1.printStackTrace()
-                }
+        fun getDateFormated(format: String, time: Long): String {
+            val id = Locale("en")
+            return SimpleDateFormat(format, id).format(Date(time))
+        }
 
-            }
-
-            return reformattedDate
+        fun getDateFormated(date: Long?): String {
+            return getDateFormated("dd MMMM yyyy", date!!)
         }
     }
 }

@@ -40,8 +40,8 @@ class TopStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     override fun doOnResponseSuccess(response: Response) {
         when(response.type){
             LiveDataTag.getListStorySuccess -> {
-                storyResponse = response as BaseResponse
-                showListStory(storyResponse!! )
+                storyResponse = response.articles as BaseResponse
+                showListStory(storyResponse!!)
             }
         }
     }

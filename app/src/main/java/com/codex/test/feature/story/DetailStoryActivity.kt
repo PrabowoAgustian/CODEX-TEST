@@ -5,6 +5,7 @@ import com.codex.test.R
 import com.codex.test.base.view.activity.BaseDaggerActivity
 import com.codex.test.constant.LiveDataTag
 import com.codex.test.feature.viewmodel.StoryViewModel
+import com.codex.test.helper.TimeHelper
 import com.codex.test.pojo.common.Response
 import com.codex.test.pojo.response.BaseResponse
 import kotlinx.android.synthetic.main.activity_detail_story.*
@@ -28,15 +29,16 @@ class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     override fun doOnResponseSuccess(response: Response) {
         when(response.type){
             LiveDataTag.getDetailStorySuccess -> {
-                initComponent(response as BaseResponse)
+                initComponent(response.articles as BaseResponse)
             }
         }
     }
 
     private fun initComponent(baseResponse: BaseResponse) {
         titleDescTextView.text = baseResponse.title
+        descTitleTextView.text = "Deskripsi"
         byUserNameTextView.text = baseResponse.by
-        dateTextView.text = baseResponse.time
+        dateTextView.text = TimeHelper.getDateFormated(baseResponse.time)
         descTextView.text = baseResponse.text
     }
 }

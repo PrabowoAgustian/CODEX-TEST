@@ -21,6 +21,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".feature.story.TopStoryActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".feature.story.DetailStoryActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.codex.test.R
+import com.codex.test.helper.TimeHelper
 import com.codex.test.pojo.response.BaseResponse
 import com.mikepenz.fastadapter.items.AbstractItem
 
@@ -33,7 +34,7 @@ class ListStoryAdapter (var response: BaseResponse) : AbstractItem<ListStoryAdap
     ) {
         super.bindView(holder, payloads)
         holder.titleStory.text = response.title
-        holder.timeStory.text = response.time
+        holder.timeStory.text = TimeHelper.getDateFormated(response.time)
         holder.urlStory.text = response.url
     }
 

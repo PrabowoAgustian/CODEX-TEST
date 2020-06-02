@@ -6,7 +6,7 @@ class Response {
     var error: Throwable? = null
     var type: String? = null
     var articles: Any? = null
-    var source: Any? = null
+    var baseResponse: Any? = null
 
     private constructor(
         status: Status,
