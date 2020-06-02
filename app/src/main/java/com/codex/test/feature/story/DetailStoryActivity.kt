@@ -5,6 +5,7 @@ import com.codex.test.R
 import com.codex.test.base.view.activity.BaseDaggerActivity
 import com.codex.test.constant.LiveDataTag
 import com.codex.test.feature.viewmodel.StoryViewModel
+import com.codex.test.helper.StringHelper
 import com.codex.test.helper.TimeHelper
 import com.codex.test.pojo.common.Response
 import com.codex.test.pojo.response.BaseResponse
@@ -37,7 +38,7 @@ class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     private fun initComponent(baseResponse: BaseResponse) {
         titleDescTextView.text = baseResponse.title
         descTitleTextView.text = "Deskripsi"
-        byUserNameTextView.text = baseResponse.by
+        byUserNameTextView.text = StringHelper.getStringBuilderToString("By ", baseResponse.by)
         dateTextView.text = TimeHelper.getDateFormated(baseResponse.time)
         descTextView.text = baseResponse.text
     }

@@ -2,6 +2,7 @@ package com.codex.test.feature.story
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.codex.test.R
 import com.codex.test.base.view.activity.BaseDaggerActivity
 import com.codex.test.constant.LiveDataTag
@@ -13,7 +14,7 @@ import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import kotlinx.android.synthetic.main.activity_top_story.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
-class TopStoryActivity : BaseDaggerActivity<StoryViewModel>() {
+class TopStoryActivity : BaseDaggerActivity<StoryViewModel>(), SwipeRefreshLayout.OnRefreshListener {
 
     private val listStoryAdapter = FastItemAdapter<ListStoryAdapter>()
 
@@ -30,11 +31,23 @@ class TopStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     }
 
     private fun initComponent() {
+        swipeRefresh.setOnRefreshListener(this)
+        swipeRefresh.setProgressBackgroundColorSchemeColor(resources.getColor(R.color.soft_blue))
         configureGridItemAdapter(listTopStoryRecycleView, listStoryAdapter, 2)
     }
 
     private fun initDataViewModel() {
         viewModel.getListCategory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.unBinding()
+    }
+
+    override fun onRefresh() {
+        swipeRefresh.isRefreshing = false
+        initDataViewModel()
     }
 
     override fun doOnResponseSuccess(response: Response) {
