@@ -1,5 +1,6 @@
 package com.codex.test.feature.story
 
+import android.content.Intent
 import android.os.Bundle
 import com.codex.test.R
 import com.codex.test.base.view.activity.BaseDaggerActivity
@@ -48,5 +49,11 @@ class TopStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     fun showListStory(dataStory : BaseResponse){
         listStoryAdapter.clear()
         listStoryAdapter.add(ListStoryAdapter(dataStory))
+
+        listStoryAdapter.withOnClickListener { _, _, item, _ ->
+            val intent = Intent(this, DetailStoryActivity::class.java)
+            showActivity(intent)
+            true
+        }
     }
 }
