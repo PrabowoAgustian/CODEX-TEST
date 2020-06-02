@@ -1,10 +1,12 @@
 package com.codex.test.feature.story
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.widget.Toast
 import butterknife.OnClick
 import com.codex.test.R
+import com.codex.test.base.data.PreferenceManager
 import com.codex.test.base.view.activity.BaseDaggerActivity
 import com.codex.test.constant.LiveDataTag
 import com.codex.test.feature.viewmodel.StoryViewModel
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_detail_story.*
 
 @Suppress("CAST_NEVER_SUCCEEDS", "DEPRECATION")
 class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
+    var dataStory : BaseResponse? = null
 
     override fun layoutRes(): Int {
         return R.layout.activity_detail_story
@@ -33,7 +36,8 @@ class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     override fun doOnResponseSuccess(response: Response) {
         when(response.type){
             LiveDataTag.getDetailStorySuccess -> {
-                initComponent(response.articles as BaseResponse)
+                dataStory = response.articles as BaseResponse
+                initComponent(dataStory!!)
             }
         }
     }
@@ -50,7 +54,9 @@ class DetailStoryActivity : BaseDaggerActivity<StoryViewModel>() {
     fun favClicked(){
         favButton.isSelected = !favButton.isSelected
         if (favButton.isSelected) {
-            showActivityAndFinishAllActivity(this, TopStoryActivity::class.java)
+            val intent = Intent(this, TopStoryActivity::class.java)
+            intent.putExtra("title", dataStory?.title)
+            showActivity(intent)
             Toast.makeText(this@DetailStoryActivity, "Added to favorites", Toast.LENGTH_LONG).show()
         }
     }
